@@ -48,6 +48,8 @@ Aeropod runs as a lightweight Python-based operating system with modular compone
 
 The file folder names are pretty self explanatory, but the cad file is specifically made for the measurements of these parts that will be used:
 
+<img width="591" height="625" alt="image" src="https://github.com/user-attachments/assets/33947ad9-7867-4c89-b9fa-8d5b4b1e3b39" />
+
 ### Core Compute
   - Raspberry Pi Zero 2 W
 
