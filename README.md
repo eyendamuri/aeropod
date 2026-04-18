@@ -70,3 +70,69 @@ The file folder names are pretty self explanatory, but the cad file is specifica
 ### Display / UI
   - 2-inch 240x320 IPS LCD Display (ST7789V, SPI Interface)
 
+---
+## Future Plans
+
+Aeropod is currently a working prototype, but the long-term goal is to evolve it into a fully polished handheld media device with a refined interface and richer features.
+
+### UI & Animation System
+Future versions will introduce a fully animated UI to make the device feel more like a real consumer product. Planned improvements include:
+
+- Smooth menu transitions and scrolling animations
+- Boot animations when the device powers on
+- Visual feedback for clickwheel navigation
+- App opening/closing animations
+
+These additions will make the interface feel more responsive and polished while maintaining the retro aesthetic.
+
+---
+
+### Authentic iPod-Style Music Interface
+The music application will eventually adopt an interface that closely mirrors the classic iPod UI experience. Planned features include:
+
+- Vertical scrolling song lists
+- Album/artist/playlist navigation
+- On-screen volume indicators
+- Track progress bars
+- Album artwork display during playback
+- Momentum-style scrolling using the clickwheel
+
+The goal is to recreate the iconic iPod music browsing experience while running entirely on custom hardware.
+
+---
+
+### PS Vita–Inspired Main Menu
+While the music player will follow the iPod design language, the **main system menu** will use a UI style inspired by the PlayStation Vita.
+
+Planned elements include:
+
+- Bubble-style icons for apps
+- Horizontal app pages
+- Smooth animated transitions between apps
+- A clean home screen that highlights the device’s apps (Music, Camera, Games, etc.)
+
+This hybrid approach lets Aeropod combine two iconic design styles:  
+- **iPod UI for music navigation**  
+- **PS Vita UI for system navigation**
+
+---
+
+### Album Art Support
+Future updates will allow the Aeropod to display album artwork while music is playing. This may include:
+
+- Embedded album art from MP3 metadata
+- A small album-art thumbnail in song lists
+- Full album-art display on the playback screen
+
+---
+
+### Music Sync & Streaming
+Longer-term software goals include adding ways to sync or stream music:
+
+- USB music syncing from a computer
+- Optional Wi-Fi transfer of music files
+- Experimental **Spotify integration** for streaming when connected to Wi-Fi
+
+This would allow Aeropod to bridge the gap between classic offline MP3 players and modern streaming devices.
+
+---
