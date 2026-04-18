@@ -101,7 +101,7 @@ The goal is to recreate the iconic iPod music browsing experience while running 
 
 ---
 
-### PS Vita–Inspired Main Menu
+### PS Vita Inspired Main Menu
 While the music player will follow the iPod design language, the **main system menu** will use a UI style inspired by the PlayStation Vita.
 
 Planned elements include:
