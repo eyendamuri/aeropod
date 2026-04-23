@@ -2,7 +2,8 @@
 
 Aeropod is a portable, retro-inspired media device built as a hybrid between a classic MP3 player, a digital camera, and a simple handheld gaming console. It is designed around a custom OS running on a Raspberry Pi, with a tactile clickwheel-style interface and a nostalgic 2000s aesthetic.
 
----
+## DISCLAIMER
+The cad models and files do not include components because the component models are simply not available on the internet, and the wiring diagram is in a folder as a separate md file due to its size. 
 
 ## Features
 
@@ -42,8 +43,6 @@ Aeropod runs as a lightweight Python-based operating system with modular compone
 - App Layer → music, camera, games
 - Hardware Layer → display, audio, camera
 
----
-
 ## Files
 
 The file folder names are pretty self explanatory, but the cad file is specifically made for the measurements of these parts that will be used:
@@ -70,7 +69,6 @@ The file folder names are pretty self explanatory, but the cad file is specifica
 ### Display / UI
   - 2-inch 240x320 IPS LCD Display (ST7789V, SPI Interface)
 
----
 ## Future Plans
 
 Aeropod is currently a working prototype, but the long-term goal is to evolve it into a fully polished handheld media device with a refined interface and richer features.
@@ -85,7 +83,6 @@ Future versions will introduce a fully animated UI to make the device feel more 
 
 These additions will make the interface feel more responsive and polished while maintaining the retro aesthetic.
 
----
 
 ### Authentic iPod-Style Music Interface
 The music application will eventually adopt an interface that closely mirrors the classic iPod UI experience. Planned features include:
@@ -99,7 +96,6 @@ The music application will eventually adopt an interface that closely mirrors th
 
 The goal is to recreate the iconic iPod music browsing experience while running entirely on custom hardware.
 
----
 
 ### PS Vita Inspired Main Menu
 While the music player will follow the iPod design language, the **main system menu** will use a UI style inspired by the PlayStation Vita.
@@ -115,7 +111,6 @@ This hybrid approach lets Aeropod combine two iconic design styles:
 - **iPod UI for music navigation**  
 - **PS Vita UI for system navigation**
 
----
 
 ### Album Art Support
 Future updates will allow the Aeropod to display album artwork while music is playing. This may include:
@@ -124,7 +119,6 @@ Future updates will allow the Aeropod to display album artwork while music is pl
 - A small album-art thumbnail in song lists
 - Full album-art display on the playback screen
 
----
 
 ### Music Sync & Streaming
 Longer-term software goals include adding ways to sync or stream music:
