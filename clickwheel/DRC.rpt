@@ -1,0 +1,40 @@
+** Drc report for clickwheel.kicad_pcb **
+** Created on 2026-06-03T12:38:04 **
+** Report includes: Errors, Warnings **
+
+** Found 5 DRC violations **
+[copper_edge_clearance]: Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.0000 mm)
+    Rule: board setup constraints edge; error
+    @(116.5352 mm, 73.6346 mm): Segment on Edge.Cuts
+    @(118.7127 mm, 67.2990 mm): Polygon [GND] on F.Cu
+[invalid_outline]: Board has malformed outline (not a closed shape)
+    Local override; error
+    @(103.7336 mm, 81.3054 mm): Arc on Edge.Cuts
+    @(138.6840 mm, 94.7569 mm): Segment on Edge.Cuts
+[invalid_outline]: Board has malformed outline (not a closed shape)
+    Local override; error
+    @(116.5352 mm, 73.6346 mm): Segment on Edge.Cuts
+    @(116.5352 mm, 73.6346 mm): Segment on Edge.Cuts
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(120.1604 mm, 88.7546 mm): Track [Net-(J1-Pin_17)] on B.Cu, length 0.0359 mm
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(103.7200 mm, 81.2800 mm): PCB text 'GND' on F.Silkscreen
+
+** Found 1 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(96.4438 mm, 77.1652 mm): Pad 2 [Net-(J1-Pin_17)] of SW5 on B.Cu
+    @(96.4438 mm, 87.6554 mm): Track [Net-(J1-Pin_17)] on B.Cu, length 2.5402 mm
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

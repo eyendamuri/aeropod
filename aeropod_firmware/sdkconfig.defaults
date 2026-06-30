@@ -1,0 +1,93 @@
+# Aeropod Firmware - ESP-IDF sdkconfig defaults
+# Target
+CONFIG_IDF_TARGET="esp32"
+
+# CPU & Memory
+CONFIG_ESP32_DEFAULT_CPU_FREQ_240=y
+CONFIG_ESP32_SPIRAM_SUPPORT=n
+
+# Partition table
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# FreeRTOS
+CONFIG_FREERTOS_HZ=1000
+CONFIG_FREERTOS_TIMER_TASK_STACK_DEPTH=4096
+
+# Logging
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+CONFIG_LOG_MAXIMUM_LEVEL_DEBUG=y
+
+# WiFi
+CONFIG_ESP32_WIFI_STATIC_RX_BUFFER_NUM=4
+CONFIG_ESP32_WIFI_DYNAMIC_RX_BUFFER_NUM=16
+CONFIG_ESP32_WIFI_TX_BUFFER_TYPE_DYNAMIC=y
+
+# Flash / SPI
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_ESPTOOLPY_FLASHMODE_DIO=y
+CONFIG_ESPTOOLPY_FLASHFREQ_80M=y
+
+# FAT filesystem
+CONFIG_FATFS_LFN_HEAP=y
+CONFIG_FATFS_MAX_LFN=255
+CONFIG_FATFS_CODEPAGE_850=y
+
+# HTTP client buffer
+CONFIG_ESP_HTTP_CLIENT_ENABLE_HTTPS=y
+
+# Stack sizes
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+
+# SPI Master
+CONFIG_SPI_MASTER_IN_IRAM=y
+CONFIG_SPI_MASTER_ISR_IN_IRAM=y
+
+# NVS
+CONFIG_NVS_ASSERT_ERROR_CHECK=n
+
+# ── Bluetooth ──────────────────────────────────────────────────────────────────
+CONFIG_BT_ENABLED=y
+CONFIG_BT_CLASSIC_ENABLED=y
+CONFIG_BT_A2DP_ENABLE=y
+CONFIG_BT_AVRC_CTRL_ENABLE=y
+CONFIG_BT_AVRC_TGT_ENABLE=y
+CONFIG_BT_SPP_ENABLED=n
+CONFIG_BT_BLE_ENABLED=n
+# BT + WiFi coexistence (both active simultaneously)
+CONFIG_ESP32_WIFI_SW_COEXIST_ENABLE=y
+# BT controller memory - use legacy mode for Classic BT only
+CONFIG_BTDM_CTRL_MODE_BLE_ONLY=n
+CONFIG_BTDM_CTRL_MODE_BR_EDR_ONLY=y
+CONFIG_BTDM_CTRL_MODE_BTDM=n
+# A2DP sink buffer size
+CONFIG_BT_A2DP_SINK_TASK_STACK_SIZE=4096
+
+# ── mDNS (Spotify Connect announcement) ──────────────────────────────────────
+CONFIG_MDNS_TASK_STACK_SIZE=4096
+
+# ── TLS / HTTPS (Spotify API, OAuth) ─────────────────────────────────────────
+CONFIG_ESP_TLS_SERVER=n
+CONFIG_ESP_TLS_CLIENT_SESSION_TICKETS=n
+# mbedTLS - enable SHA-256 and AES for Spotify PKCE + Connect
+CONFIG_MBEDTLS_SHA256_C=y
+CONFIG_MBEDTLS_AES_C=y
+CONFIG_MBEDTLS_BASE64_C=y
+CONFIG_MBEDTLS_ENTROPY_C=y
+CONFIG_MBEDTLS_CTR_DRBG_C=y
+# Certificate bundle (needed for HTTPS to api.spotify.com / accounts.spotify.com)
+CONFIG_MBEDTLS_CERTIFICATE_BUNDLE=y
+CONFIG_MBEDTLS_CERTIFICATE_BUNDLE_DEFAULT_FULL=y
+
+# ── cJSON (Spotify Web API parsing) ──────────────────────────────────────────
+# cJSON is built into ESP-IDF as the 'json' component - no extra config needed
+
+# ── Stack / heap tweaks for BT + WiFi + Spotify ──────────────────────────────
+# BT controller needs memory - reduce WiFi buffers slightly
+CONFIG_ESP32_WIFI_DYNAMIC_RX_BUFFER_NUM=8
+CONFIG_ESP32_WIFI_STATIC_TX_BUFFER_NUM=8
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+
+# ── Partition table - slightly larger app partition for BT stack ──────────────
+# (partitions.csv already allocates 3 MB for app)
+

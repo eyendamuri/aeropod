@@ -1,0 +1,28 @@
+# ─── ESP-IDF firmware build artifacts ───
+build/
+sdkconfig
+sdkconfig.old
+managed_components/
+dependencies.lock
+*.bin
+*.elf
+*.map
+# keep the checked-in defaults
+!sdkconfig.defaults
+
+# ─── KiCad noise (auto-backups, local history, caches, local prefs) ───
+*-backups/
+.history/
+fp-info-cache
+*.kicad_prl
+*.bak
+*~
+_autosave-*
+\#auto_saved_files#
+
+# ─── OS / editor cruft ───
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
