@@ -73,7 +73,7 @@ static void about_render(screen_t *self)
 
     display_draw_string_centred(0, y + 50, LCD_WIDTH, "ESP32-WROOM-32",     FONT_SMALL, COL_DARK_TEXT, COL_WHITE);
     display_draw_string_centred(0, y + 64, LCD_WIDTH, "PCM5102A I2S DAC",   FONT_SMALL, COL_DARK_TEXT, COL_WHITE);
-    display_draw_string_centred(0, y + 78, LCD_WIDTH, "ILI9341 240\xd7 320", FONT_SMALL, COL_DARK_TEXT, COL_WHITE);
+    display_draw_string_centred(0, y + 78, LCD_WIDTH, "ST7789 IPS 240\xd7 320", FONT_SMALL, COL_DARK_TEXT, COL_WHITE);
     display_draw_string_centred(0, y + 92, LCD_WIDTH, "MPR121 12-zone ring", FONT_SMALL, COL_DARK_TEXT, COL_WHITE);
 
     display_draw_hline(20, y + 108, LCD_WIDTH - 40, COL_GRAY_LINE);

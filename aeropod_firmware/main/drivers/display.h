@@ -4,7 +4,7 @@
 #include "config.h"
 
 /**
- * ILI9341 SPI display driver.
+ * ST7789 SPI display driver.
  * Provides pixel, line, rect, text and DMA-accelerated blit operations.
  * All colour values are RGB565 (big-endian on wire).
  */

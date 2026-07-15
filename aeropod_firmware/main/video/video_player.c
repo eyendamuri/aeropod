@@ -37,7 +37,7 @@ static int tjpg_out_func(JDEC *jd, void *bitmap, JRECT *rect)
     if (w == 0 || h == 0) return 1;
 
     display_set_window(x, y, x + w - 1, y + h - 1);
-    // Swap byte order for ILI9341
+    // Swap byte order for ST7789 (big-endian on wire)
     for (uint32_t i = 0; i < (uint32_t)w * h; i++) {
         uint16_t px = rgb565[i];
         s_strip_buf[i] = (px >> 8) | (px << 8);

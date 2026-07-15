@@ -35,7 +35,7 @@ aeropod is two custom PCBs plus a 3D-printed enclosure.
 | Subsystem | Part | Notes |
 |-----------|------|-------|
 | MCU | **ESP32-WROOM-32** | dual-core, Wi-Fi + Classic Bluetooth |
-| Display | **ILI9341** 240×320 SPI LCD | PWM backlight |
+| Display | **ST7789** 240×320 SPI IPS LCD | PWM backlight |
 | Audio DAC | **PCM5102A** | 32-bit I²S stereo DAC |
 | Touch input | **MPR121** | 12-zone capacitive click wheel |
 | Buttons | 5× tactile | Menu / Prev / Next / Play / Center |
@@ -49,7 +49,7 @@ aeropod is two custom PCBs plus a 3D-printed enclosure.
 
 | Peripheral | Pins |
 |------------|------|
-| ILI9341 display | SCK 18, MOSI 23, CS 5, DC 17, RST 16, BL 27 |
+| ST7789 display | SCK 18, MOSI 23, CS 5, DC 17, RST 16, BL 27 |
 | microSD (shared SPI bus) | CS 15 |
 | PCM5102A I²S | BCK 26, LRCK 25, DATA 22 |
 | MPR121 click wheel (I²C) | SDA 21, SCL 4, IRQ 13 |
@@ -101,7 +101,7 @@ aeropod/
 │   ├── main/
 │   │   ├── audio/           I²S output + MP3/AAC/WAV player
 │   │   ├── bt_audio/        Bluetooth A2DP sink/source + AVRCP
-│   │   ├── drivers/         display (ILI9341), click wheel (MPR121), fonts
+│   │   ├── drivers/         display (ST7789), click wheel (MPR121), fonts
 │   │   ├── network/         Wi-Fi manager + HTTP streaming
 │   │   ├── spotify/         OAuth PKCE, Web API, Spotify Connect
 │   │   ├── storage/         microSD + in-memory media library

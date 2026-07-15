@@ -11,33 +11,48 @@
 
 static const char *TAG = "display";
 
-// ─── ILI9341 command set ──────────────────────────────────────────────────────
-#define ILI_NOP       0x00
-#define ILI_SWRESET   0x01
-#define ILI_SLPIN     0x10
-#define ILI_SLPOUT    0x11
-#define ILI_NORON     0x13
-#define ILI_INVOFF    0x20
-#define ILI_DISPON    0x29
-#define ILI_CASET     0x2A
-#define ILI_PASET     0x2B
-#define ILI_RAMWR     0x2C
-#define ILI_MADCTL    0x36
-#define ILI_COLMOD    0x3A
-#define ILI_FRMCTR1   0xB1
-#define ILI_DFUNCTR   0xB6
-#define ILI_PWCTR1    0xC0
-#define ILI_PWCTR2    0xC1
-#define ILI_VMCTR1    0xC5
-#define ILI_VMCTR2    0xC7
-#define ILI_GMCTRP1   0xE0
-#define ILI_GMCTRN1   0xE1
+// ─── ST7789 command set ────────────────────────────────────────────────────────
+// ST7789 shares its core command opcodes with the ILI9341 family (CASET,
+// RASET, RAMWR, MADCTL, COLMOD all match), so most of this driver below is
+// unchanged from the ILI9341 version. Only the init register sequence and
+// panel-specific commands differ.
+#define ST_NOP        0x00
+#define ST_SWRESET    0x01
+#define ST_SLPIN      0x10
+#define ST_SLPOUT     0x11
+#define ST_NORON      0x13
+#define ST_INVOFF     0x20
+#define ST_INVON      0x21
+#define ST_DISPON     0x29
+#define ST_CASET      0x2A
+#define ST_RASET      0x2B
+#define ST_RAMWR      0x2C
+#define ST_MADCTL     0x36
+#define ST_COLMOD     0x3A
+#define ST_PORCTRL    0xB2
+#define ST_GCTRL      0xB7
+#define ST_VCOMS      0xBB
+#define ST_LCMCTRL    0xC0
+#define ST_VDVVRHEN   0xC2
+#define ST_VRHS       0xC3
+#define ST_VDVS       0xC4
+#define ST_FRCTRL2    0xC6
+#define ST_PWCTRL1    0xD0
 
-// MADCTL: portrait, BGR
+// MADCTL: portrait. Panel colour order (RGB vs BGR) varies by glass vendor -
+// if colours come out swapped (red/blue) on the real display, flip the
+// MADCTL_BGR bit here.
 #define MADCTL_MY   0x80
 #define MADCTL_MX   0x40
 #define MADCTL_MV   0x20
 #define MADCTL_BGR  0x08
+
+// This panel (Waveshare 2" 240x320 IPS) exposes the full ST7789 240x320
+// RAM window, so no column/row offset is needed. Smaller ST7789 panels
+// (e.g. 135x240, 172x320) that use a cropped window would need non-zero
+// offsets here.
+#define ST_COL_OFFSET 0
+#define ST_ROW_OFFSET 0
 
 // ─── Font bitmaps (minimal built-in; 6×8 ASCII 32-127) ───────────────────────
 // Compact 6×8 font: 96 chars × 6 bytes each (column-major, LSB=top)
@@ -76,7 +91,7 @@ static void spi_data(const uint8_t *data, size_t len)
 static void spi_data8(uint8_t d) { spi_data(&d, 1); }
 
 // ─── Init sequence ────────────────────────────────────────────────────────────
-static void ili9341_hw_reset(void)
+static void st7789_hw_reset(void)
 {
     gpio_set_level(LCD_RST_PIN, 0);
     vTaskDelay(pdMS_TO_TICKS(20));
@@ -84,49 +99,57 @@ static void ili9341_hw_reset(void)
     vTaskDelay(pdMS_TO_TICKS(120));
 }
 
-static void ili9341_init_regs(void)
+static void st7789_init_regs(void)
 {
     // Software reset
-    spi_cmd(ILI_SWRESET);
+    spi_cmd(ST_SWRESET);
     vTaskDelay(pdMS_TO_TICKS(150));
-    spi_cmd(ILI_SLPOUT);
+    spi_cmd(ST_SLPOUT);
     vTaskDelay(pdMS_TO_TICKS(120));
 
-    // Power control
-    spi_cmd(ILI_PWCTR1); spi_data8(0x23);
-    spi_cmd(ILI_PWCTR2); spi_data8(0x10);
-    spi_cmd(ILI_VMCTR1);
-    spi_data8(0x3E); spi_data8(0x28);
-    spi_cmd(ILI_VMCTR2); spi_data8(0x86);
-
-    // Memory access control: portrait, BGR
-    spi_cmd(ILI_MADCTL);
-    spi_data8(MADCTL_MX | MADCTL_BGR);
-
-    // 16-bit colour
-    spi_cmd(ILI_COLMOD); spi_data8(0x55);
-
-    // Frame rate: ~60 Hz
-    spi_cmd(ILI_FRMCTR1);
-    spi_data8(0x00); spi_data8(0x18);
-
-    // Display function control
-    spi_cmd(ILI_DFUNCTR);
-    spi_data8(0x08); spi_data8(0x82); spi_data8(0x27);
-
-    // Gamma correction (positive / negative)
-    spi_cmd(ILI_GMCTRP1);
-    const uint8_t pgamma[] = {0x0F,0x31,0x2B,0x0C,0x0E,0x08,0x4E,0xF1,
-                               0x37,0x07,0x10,0x03,0x0E,0x09,0x00};
-    spi_data(pgamma, 15);
-    spi_cmd(ILI_GMCTRN1);
-    const uint8_t ngamma[] = {0x00,0x0E,0x14,0x03,0x11,0x07,0x31,0xC1,
-                               0x48,0x08,0x0F,0x0C,0x31,0x36,0x0F};
-    spi_data(ngamma, 15);
-
-    spi_cmd(ILI_NORON);
+    // 16-bit colour (RGB565)
+    spi_cmd(ST_COLMOD); spi_data8(0x55);
     vTaskDelay(pdMS_TO_TICKS(10));
-    spi_cmd(ILI_DISPON);
+
+    // Memory access control: portrait orientation
+    spi_cmd(ST_MADCTL);
+    spi_data8(MADCTL_MX);
+
+    // Porch setting (front/back porch, idle/partial mode) - panel defaults
+    spi_cmd(ST_PORCTRL);
+    spi_data8(0x0C); spi_data8(0x0C); spi_data8(0x00);
+    spi_data8(0x33); spi_data8(0x33);
+
+    // Gate control
+    spi_cmd(ST_GCTRL); spi_data8(0x35);
+
+    // VCOM setting
+    spi_cmd(ST_VCOMS); spi_data8(0x19);
+
+    // LCM control
+    spi_cmd(ST_LCMCTRL); spi_data8(0x2C);
+
+    // VDV/VRH command enable, then VRH and VDV
+    spi_cmd(ST_VDVVRHEN); spi_data8(0x01);
+    spi_cmd(ST_VRHS);     spi_data8(0x12);
+    spi_cmd(ST_VDVS);     spi_data8(0x20);
+
+    // Frame rate control (~60 Hz)
+    spi_cmd(ST_FRCTRL2); spi_data8(0x0F);
+
+    // Power control 1
+    spi_cmd(ST_PWCTRL1);
+    spi_data8(0xA4); spi_data8(0xA1);
+
+    // Most ST7789 glass is wired inverted - INVON gives correct colours
+    // on nearly every module in the field. If colours look washed out or
+    // negative on the real panel, try ST_INVOFF instead.
+    spi_cmd(ST_INVON);
+    vTaskDelay(pdMS_TO_TICKS(10));
+
+    spi_cmd(ST_NORON);
+    vTaskDelay(pdMS_TO_TICKS(10));
+    spi_cmd(ST_DISPON);
     vTaskDelay(pdMS_TO_TICKS(100));
 }
 
@@ -187,11 +210,11 @@ void display_init(void)
     };
     ledc_channel_config(&lch);
 
-    ili9341_hw_reset();
-    ili9341_init_regs();
+    st7789_hw_reset();
+    st7789_init_regs();
     display_backlight(80);
 
-    ESP_LOGI(TAG, "ILI9341 %dx%d ready", LCD_WIDTH, LCD_HEIGHT);
+    ESP_LOGI(TAG, "ST7789 %dx%d ready", LCD_WIDTH, LCD_HEIGHT);
 }
 
 void display_backlight(uint8_t percent)
@@ -204,17 +227,19 @@ void display_backlight(uint8_t percent)
 // ─── Window / pixel writes ────────────────────────────────────────────────────
 void display_set_window(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
 {
-    uint8_t caset[4] = { x0 >> 8, x0, x1 >> 8, x1 };
-    uint8_t paset[4] = { y0 >> 8, y0, y1 >> 8, y1 };
-    spi_cmd(ILI_CASET); spi_data(caset, 4);
-    spi_cmd(ILI_PASET); spi_data(paset, 4);
-    spi_cmd(ILI_RAMWR);
+    uint16_t cx0 = x0 + ST_COL_OFFSET, cx1 = x1 + ST_COL_OFFSET;
+    uint16_t cy0 = y0 + ST_ROW_OFFSET, cy1 = y1 + ST_ROW_OFFSET;
+    uint8_t caset[4] = { cx0 >> 8, cx0, cx1 >> 8, cx1 };
+    uint8_t raset[4] = { cy0 >> 8, cy0, cy1 >> 8, cy1 };
+    spi_cmd(ST_CASET); spi_data(caset, 4);
+    spi_cmd(ST_RASET); spi_data(raset, 4);
+    spi_cmd(ST_RAMWR);
     gpio_set_level(LCD_DC_PIN, 1);
 }
 
 void display_write_pixels(const uint16_t *data, uint32_t len)
 {
-    // data is host-endian RGB565; ILI9341 expects big-endian
+    // data is host-endian RGB565; ST7789 expects big-endian
     spi_transaction_t t = {
         .length    = len * 16,
         .tx_buffer = data,

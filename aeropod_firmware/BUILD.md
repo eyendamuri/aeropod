@@ -53,7 +53,7 @@ idf.py -p /dev/ttyUSB0 flash monitor
 
 | Peripheral        | Pins                                          |
 |-------------------|-----------------------------------------------|
-| ILI9341 display   | SCK=18, MOSI=23, CS=5, DC=17, RST=16, BL=27  |
+| ST7789 IPS display| SCK=18, MOSI=23, CS=5, DC=17, RST=16, BL=27  |
 | SD card (SPI)     | shared VSPI bus, CS=15                        |
 | PCM5102A I2S      | BCK=26, LRCK=25, DATA=22                      |
 | MPR121 clickwheel | SDA=21, SCL=4, IRQ=13                         |
@@ -172,7 +172,7 @@ in your Spotify app's device list. Tap it to transfer playback directly.
 
 ```
 app_main()
-  ├── display_init()         → ILI9341 SPI @ 40 MHz, LEDC backlight
+  ├── display_init()         → ST7789 SPI @ 40 MHz, LEDC backlight
   ├── clickwheel_init()      → MPR121 12-zone ring + 5 mechanical buttons
   │                            cw_event_t queue (CW_ROTATE_CW/CCW, CW_BTN_*)
   ├── sdcard_init()          → FAT/SDMMC mount at /sdcard

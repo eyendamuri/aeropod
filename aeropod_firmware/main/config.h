@@ -6,12 +6,12 @@
  * MCU   : ESP32-WROOM-32 (aeropod2 schematic: esp32.kicad_sch)
  * Audio : PCM5102A stereo DAC via I2S  (audio.kicad_sch)
  * Input : MPR121QR2 capacitive clickwheel (I2C) + 5 push buttons (input.kicad_sch)
- * Display: ILI9341 240×320 SPI LCD  (display.kicad_sch - Conn_01x07)
+ * Display: ST7789 240×320 SPI IPS LCD  (display.kicad_sch - Conn_01x07)
  * Storage: Micro-SD card in SPI mode (storage.kicad_sch)
  * Power : USB-C → TP4056 → LiPo → AMS1117-3.3V + MT3608 boost (power.kicad_sch)
  */
 
-// ─── Display (ILI9341, SPI via VSPI) ─────────────────────────────────────────
+// ─── Display (ST7789, SPI via VSPI) ──────────────────────────────────────────
 #define LCD_WIDTH        240
 #define LCD_HEIGHT       320
 #define LCD_SPI_HOST     SPI3_HOST     // VSPI
