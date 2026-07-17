@@ -44,7 +44,8 @@ should be confirmed against the final board footprints and your battery space.
 | LiPo battery | 3.7 V single cell, roughly 500 to 1000 mAh, JST-PH | power |
 | FFC/FPC ribbon or jumper wires | matched to the board connectors | links main board to clickwheel board |
 | Speaker or headphones | small 8 ohm speaker, or 3.5 mm headphones | audio output |
-| Fasteners | M2 screws, optional heat-set inserts | case assembly |
+| Hot glue | standard glue gun sticks | mounting the main board and battery, closing the case |
+| Cardstock or thin cardboard | stiff, non-heat-conductive sheet, cut to fit | backing behind the click-wheel board so the buttons have a surface to press against |
 
 ## Enclosure (3D printed)
 

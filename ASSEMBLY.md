@@ -2,8 +2,8 @@
 
 How the pieces go together. The boards have not been physically built yet (that
 is what this funding round is for), so treat this as the intended assembly plan;
-dimensions and fasteners should be double-checked against the printed case and
-the assembled boards when they arrive. Questions welcome.
+dimensions and fit should be double-checked against the printed case and the
+assembled boards when they arrive. Questions welcome.
 
 ## 1. What you need
 
@@ -21,7 +21,10 @@ the assembled boards when they arrive. Questions welcome.
 - 3.7 V single-cell LiPo, ~500-1000 mAh, JST-PH connector
 - FFC/FPC ribbon or jumper wires (main board to clickwheel board)
 - Small 8 ohm speaker or 3.5 mm headphones
-- M2 screws (optional: M2 heat-set inserts)
+- Hot glue gun (the main board, battery, and case seam are glued - the PCBs
+  have no mounting holes; double-sided tape works for the battery too)
+- A piece of cardstock or thin cardboard (or any similar stiff,
+  non-heat-conductive sheet) - backing for the click-wheel board
 
 **Printed case**: `case/Aeropod_Case.step` / `case/Aeropod_Case.stl`. The STL
 contains both shells laid out flat for printing (overall ~95 x 94 mm plate,
@@ -61,13 +64,23 @@ Approximate order (refine against the real parts):
 2. **Clickwheel board into the front shell.** It sits in the circular recess
    below the display window, component side facing away from your thumb (the
    electrode side must face the front surface, as close to the plastic as
-   possible - capacitive sensing works through the shell). Fix with M2 screws
-   into the standoffs, or heat-set inserts if you added them.
+   possible - capacitive sensing works through the shell). This board is NOT
+   glued down. Cut a piece of cardstock or thin cardboard to the shape of the
+   recess and place it behind the board, so the tactile buttons have a firm
+   surface to push against; the board is held by pressure between the front
+   shell and that backing sheet. To stop it sliding sideways, put small hot
+   glue dams on the case around the board's edge (glue on the plastic, not on
+   the board). Note that this backing is not modeled in the case - its
+   thickness is not hardcoded anywhere - so stack layers of cardstock until
+   the wheel sits flush with light, even pressure and the buttons click
+   cleanly.
 3. **Connect the wheel to the main board.** FFC ribbon or short jumper wires
    between the wheel connector on each board (I2C: SDA/SCL, IRQ, 3.3 V, GND,
    plus the five button lines - the connectors are labelled on the silkscreen).
-4. **Main board onto the back-shell standoffs.** USB-C and the microSD slot
-   line up with the cutouts on the bottom edge. M2 screws into the standoffs.
+4. **Main board into the back shell.** USB-C and the microSD slot line up with
+   the cutouts on the bottom edge. Seat the board on the internal posts and
+   tack the corners with hot glue - the board has no mounting holes, so glue
+   is the mounting plan.
 5. **Connect the display cable** from the front shell to the display connector
    on the main board (SPI: SCK/MOSI/CS/DC/RST plus backlight, labelled on
    silkscreen).
@@ -76,8 +89,9 @@ Approximate order (refine against the real parts):
    polarity of your battery lead matches the board silkscreen before plugging
    it in - JST-PH pigtails from different vendors are wired both ways.
 7. **Close it up.** The front and back shells locate on a lip around the rim.
-   Check no wires are pinched, press together, and screw the halves with M2
-   screws.
+   Check no wires are pinched, press the halves together, and run a few dabs
+   of hot glue along the inside of the seam - dabs at the corners rather than
+   a full bead if you want to be able to pry it open again later.
 8. **First boot:** hold nothing, plug USB-C or tap the power switch; you should
    see the splash and then the main menu. Wheel sensitivity is tuned in
    firmware (`aeropod_firmware/main/drivers/clickwheel.c`), so if the wheel
@@ -87,5 +101,7 @@ Approximate order (refine against the real parts):
 
 Honest list of things that will only be confirmed with hardware in hand: exact
 LiPo pocket fit for larger cells, whether the wheel needs threshold retuning
-through the printed shell thickness, and final screw lengths. This section gets
-updated after the first physical build.
+through the printed shell thickness, and how many layers of cardstock give the
+wheel board the right button feel (the backing is deliberately not part of the
+case model, so it is tuned by hand). This section gets updated after the first
+physical build.
