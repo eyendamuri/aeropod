@@ -1,0 +1,15 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,10.0.1*%
+%TF.CreationDate,2026-07-17T15:57:41-06:00*%
+%TF.ProjectId,clickwheel,636c6963-6b77-4686-9565-6c2e6b696361,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Soldermask,Top*%
+%TF.FilePolarity,Negative*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 10.0.1) date 2026-07-17 15:57:41*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+G04 APERTURE END LIST*
+M02*

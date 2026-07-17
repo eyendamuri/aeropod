@@ -26,3 +26,6 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+
+# ─── Stasis submission drafts (devlog + its images), not part of the code repo ───
+stasis_submission/

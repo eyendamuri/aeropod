@@ -111,9 +111,26 @@ aeropod/
 │   │   └── main.c           boot + app_main
 │   └── BUILD.md             full build instructions
 ├── aeropod2/                main board - KiCad 10 project + 3D model
+│   ├── gerbers/             fabrication gerbers + drill files
+│   └── production/          bom.csv, positions.csv (pick & place), JLC-ready zip
 ├── clickwheel/              click-wheel board - KiCad 10 project + 3D model
-└── aeropod case (Assembly).step   3D-printed enclosure
+│   ├── gerbers/             fabrication gerbers + drill files
+│   └── production/          bom.csv, positions.csv (pick & place), JLC-ready zip
+├── case/                    printable enclosure - Aeropod_Case.step / .stl
+├── ASSEMBLY.md              how it all goes together
+└── aeropod case (Assembly).step   full case assembly model
 ```
+
+---
+
+## Fabrication and assembly
+
+Everything needed to physically build an aeropod is in the repo:
+
+- **Gerbers**: `aeropod2/gerbers/` and `clickwheel/gerbers/` (drill files included)
+- **BOM + pick and place**: `bom.csv` and `positions.csv` in each board's `production/` folder, plus a ready-to-upload JLCPCB package (`aeropod2.zip` / `clickwheel.zip`)
+- **Case**: `case/Aeropod_Case.step` and `case/Aeropod_Case.stl` (both shells on one printable plate)
+- **Instructions**: see [`ASSEMBLY.md`](ASSEMBLY.md) for the step-by-step assembly plan
 
 ---
 

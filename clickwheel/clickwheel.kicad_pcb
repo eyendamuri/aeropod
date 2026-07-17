@@ -1007,6 +1007,20 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC Part #" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "c80b92ec-6317-4496-ab07-21ebe582c60f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
 		(path "/5a94f2e4-0e1c-479e-acc9-df0512c54359")
 		(sheetname "/")
 		(sheetfile "clickwheel.kicad_sch")
@@ -2193,6 +2207,18 @@
 		)
 		(layer "Edge.Cuts")
 		(uuid "624f9172-d7f0-490e-a117-959a1997e70d")
+	)
+	(gr_text "clickwheel evy 26"
+		(at 117.4242 69.2658 0)
+		(layer "F.SilkS")
+		(uuid "aec6adc4-d87c-4102-8072-02e231a11c2f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+			(justify left bottom)
+		)
 	)
 	(segment
 		(start 119.283565 87.669365)
