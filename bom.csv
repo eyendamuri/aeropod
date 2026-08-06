@@ -1,0 +1,34 @@
+Category,Part,Description,Quantity,Unit Price (USD),Total (USD),Where to buy
+Build cost,Main board (aeropod2),"4-layer PCB, 41 x 90 mm, fabricated and assembled, minimum order 5",5,23.60,118.00,https://jlcpcb.com/
+Build cost,Clickwheel board,"2-layer PCB, fabricated and assembled, minimum order 5",5,7.60,38.00,https://jlcpcb.com/
+Build cost,ST7789 display module,"2 inch IPS LCD, 240x320, SPI interface",1,15.99,15.99,https://www.waveshare.com/2inch-lcd-module.htm
+Build cost,LiPo battery,"3.7 V single cell, 1000 mAh, JST-PH connector",1,8.99,8.99,https://www.adafruit.com/product/258
+Build cost,microSD card,"32 GB, Class 10",1,7.99,7.99,https://www.amazon.com/s?k=32gb+class+10+microsd+card
+Build cost,FFC ribbon cable,"18 pin, 1.0 mm pitch, same-side contacts",1,6.99,6.99,https://www.amazon.com/s?k=18+pin+1.0mm+pitch+ffc+cable
+Build cost,Earbuds or small speaker,"3.5 mm earbuds, or 8 ohm speaker",1,5.99,5.99,https://www.amazon.com/s?k=3.5mm+wired+earbuds
+Build cost,Hot glue gun and sticks,"Mounting the main board and battery, closing the case",1,9.99,9.99,https://www.amazon.com/s?k=mini+hot+glue+gun+with+sticks
+Build cost,Cardstock sheet,"Stiff non-heat-conductive backing behind the click-wheel board",1,4.99,4.99,https://www.amazon.com/s?k=cardstock+sheets
+Build cost,3D printed case,"Printed through Hack Club's Printing Legion",1,0.00,0.00,https://printinglegion.hackclub.com/
+Build cost,TOTAL,,,,217.92,
+Main board component,U3 ESP32-WROOM-32,"MCU module, Wi-Fi and Classic Bluetooth",1,3.20,included in PCBA,https://www.lcsc.com/search?q=ESP32-WROOM-32
+Main board component,U5 PCM5102A,"I2S stereo audio DAC, TSSOP-20",1,1.85,included in PCBA,https://www.lcsc.com/search?q=PCM5102A
+Main board component,U6 CP2102N-Axx-xQFN20,"USB to UART bridge, QFN-20",1,1.70,included in PCBA,https://www.lcsc.com/search?q=CP2102N
+Main board component,U4 MPR121QR2,"12-zone capacitive touch controller, UQFN-20",1,1.15,included in PCBA,https://www.lcsc.com/search?q=MPR121
+Main board component,J5 microSD socket,"Hirose DM3AT-SF-PEJM5, push-pull",1,0.62,included in PCBA,https://www.lcsc.com/search?q=DM3AT-SF-PEJM5
+Main board component,J4 3.5 mm audio jack,"CUI SJ-3523-SMT, horizontal",1,0.35,included in PCBA,https://www.lcsc.com/search?q=SJ-3523-SMT
+Main board component,J2 FFC connector,"18 pin, 1.0 mm pitch, horizontal",1,0.30,included in PCBA,https://www.lcsc.com/search?q=1-84953-8
+Main board component,U1 TP4056-42-ESOP8,"Single-cell LiPo charge controller",1,0.22,included in PCBA,https://www.lcsc.com/search?q=TP4056
+Main board component,J1 USB-C receptacle,"USB 2.0, 14 position",1,0.22,included in PCBA,https://www.lcsc.com/search?q=USB+C+receptacle+14P
+Main board component,U7 MT3608,"Boost converter, SOT-23-6",1,0.18,included in PCBA,https://www.lcsc.com/search?q=MT3608
+Main board component,SW1 SW2 SPDT switch,"E-Switch EG1271, reset and boot",2,0.18,included in PCBA,https://www.lcsc.com/search?q=EG1271
+Main board component,L1 inductor,"4.7 uH, 0805",1,0.12,included in PCBA,https://www.lcsc.com/search?q=4.7uH+0805+inductor
+Main board component,U2 AMS1117-3.3,"3.3 V LDO regulator, SOT-223",1,0.09,included in PCBA,https://www.lcsc.com/search?q=AMS1117-3.3
+Main board component,BT1 JST-PH connector,"2 pin, 2.00 mm, battery",1,0.09,included in PCBA,https://www.lcsc.com/search?q=S2B-PH-SM4-TB
+Main board component,J6 pin header,"7 pin, 2.54 mm, display",1,0.08,included in PCBA,https://www.lcsc.com/search?q=2.54mm+pin+header
+Main board component,D3 D4 D5 Schottky diodes,"SOD-123, power path OR-ing",3,0.05,included in PCBA,https://www.lcsc.com/search?q=SOD-123+schottky
+Main board component,D1 D2 LEDs,"0603, charge and standby status",2,0.04,included in PCBA,https://www.lcsc.com/search?q=0603+LED
+Main board component,FB1 ferrite bead,"600 ohm at 100 MHz, 0603",1,0.03,included in PCBA,https://www.lcsc.com/search?q=600+ohm+ferrite+bead+0603
+Main board component,Capacitors,"0402 / 0603 / 0805, 100nF to 22uF",27,0.02,included in PCBA,https://www.lcsc.com/search?q=mlcc+capacitor
+Main board component,Resistors,"0201 / 0402, 470 ohm to 750k",16,0.01,included in PCBA,https://www.lcsc.com/search?q=chip+resistor
+Clickwheel component,J1 FFC connector,"18 pin, 1.0 mm pitch, horizontal",1,0.30,included in PCBA,https://www.lcsc.com/search?q=1-84953-8
+Clickwheel component,SW1 to SW5 tactile switches,"Omron B3S-1000, Menu / Prev / Next / Play / Center",5,0.06,included in PCBA,https://www.lcsc.com/search?q=B3S-1000

@@ -116,8 +116,9 @@ aeropod/
 ├── clickwheel/              click-wheel board - KiCad 10 project + 3D model
 │   ├── gerbers/             fabrication gerbers + drill files
 │   └── production/          bom.csv, positions.csv (pick & place), JLC-ready zip
-├── case/                    printable enclosure - Aeropod_Case.step / .stl
+├── case/                    printable enclosure - .f3d source, .step, .stl
 ├── ASSEMBLY.md              how it all goes together
+├── bom.csv                  full bill of materials with prices and links
 └── aeropod case (Assembly).step   full case assembly model
 ```
 
@@ -128,9 +129,33 @@ aeropod/
 Everything needed to physically build an aeropod is in the repo:
 
 - **Gerbers**: `aeropod2/gerbers/` and `clickwheel/gerbers/` (drill files included)
-- **BOM + pick and place**: `bom.csv` and `positions.csv` in each board's `production/` folder, plus a ready-to-upload JLCPCB package (`aeropod2.zip` / `clickwheel.zip`)
-- **Case**: `case/Aeropod_Case.step` and `case/Aeropod_Case.stl` (both shells on one printable plate)
+- **Pick and place**: `positions.csv` in each board's `production/` folder, plus a ready-to-upload JLCPCB package (`aeropod2.zip` / `clickwheel.zip`)
+- **Case**: `case/Aeropod_Case.step`, `case/Aeropod_Case.stl`, and the editable Fusion 360 source `case/Aeropod_Case.f3d`
 - **Instructions**: see [`ASSEMBLY.md`](ASSEMBLY.md) for the step-by-step assembly plan
+
+### Bill of materials
+
+Full machine-readable version with links in [`bom.csv`](bom.csv). Prices are
+approximate and were checked in August 2026.
+
+| Part | Description | Qty | Unit | Total | Buy |
+|------|-------------|-----|------|-------|-----|
+| Main board (aeropod2) | 4-layer PCB, 41 x 90 mm, fabricated and assembled, min order 5 | 5 | $23.60 | $118.00 | [JLCPCB](https://jlcpcb.com/) |
+| Clickwheel board | 2-layer PCB, fabricated and assembled, min order 5 | 5 | $7.60 | $38.00 | [JLCPCB](https://jlcpcb.com/) |
+| ST7789 display module | 2 inch IPS LCD, 240x320, SPI | 1 | $15.99 | $15.99 | [Waveshare](https://www.waveshare.com/2inch-lcd-module.htm) |
+| LiPo battery | 3.7 V single cell, 1000 mAh, JST-PH | 1 | $8.99 | $8.99 | [Adafruit](https://www.adafruit.com/product/258) |
+| microSD card | 32 GB, Class 10 | 1 | $7.99 | $7.99 | [Amazon](https://www.amazon.com/s?k=32gb+class+10+microsd+card) |
+| FFC ribbon cable | 18 pin, 1.0 mm pitch, same-side contacts | 1 | $6.99 | $6.99 | [Amazon](https://www.amazon.com/s?k=18+pin+1.0mm+pitch+ffc+cable) |
+| Earbuds or small speaker | 3.5 mm earbuds, or 8 ohm speaker | 1 | $5.99 | $5.99 | [Amazon](https://www.amazon.com/s?k=3.5mm+wired+earbuds) |
+| Hot glue gun and sticks | Mounting the main board and battery, closing the case | 1 | $9.99 | $9.99 | [Amazon](https://www.amazon.com/s?k=mini+hot+glue+gun+with+sticks) |
+| Cardstock sheet | Backing behind the click-wheel board | 1 | $4.99 | $4.99 | [Amazon](https://www.amazon.com/s?k=cardstock+sheets) |
+| 3D printed case | Printed through Hack Club's Printing Legion | 1 | $0.00 | $0.00 | [Printing Legion](https://printinglegion.hackclub.com/) |
+| | | | | **$217.92** | |
+
+The parts placed on the two boards (ESP32-WROOM-32, PCM5102A, MPR121, CP2102N,
+TP4056, AMS1117, MT3608, connectors, and passives) are covered by the assembly
+cost above. They are itemised with individual prices and LCSC links in
+[`bom.csv`](bom.csv) in case you want to source them yourself and hand solder.
 
 ---
 

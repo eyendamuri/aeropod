@@ -26,9 +26,11 @@ assembled boards when they arrive. Questions welcome.
 - A piece of cardstock or thin cardboard (or any similar stiff,
   non-heat-conductive sheet) - backing for the click-wheel board
 
-**Printed case**: `case/Aeropod_Case.step` / `case/Aeropod_Case.stl`. The STL
-contains both shells laid out flat for printing (overall ~95 x 94 mm plate,
-9.3 mm tall). PLA or PETG, no supports should be needed in this orientation.
+**Printed case**: `case/Aeropod_Case.stl` for printing, `case/Aeropod_Case.step`
+for CAD import, and `case/Aeropod_Case.f3d` if you want to edit the original
+Fusion 360 model. The STL contains both shells laid out flat for printing
+(overall ~95 x 94 mm plate, 9.3 mm tall). PLA or PETG, no supports should be
+needed in this orientation.
 
 ## 2. Order the boards
 
