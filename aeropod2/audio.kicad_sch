@@ -3707,7 +3707,7 @@
 				)
 			)
 		)
-		(property "Value" "470"
+		(property "Value" "33"
 			(at 160.02 82.55 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4512,7 +4512,7 @@
 				)
 			)
 		)
-		(property "Value" "470"
+		(property "Value" "33"
 			(at 160.02 95.25 90)
 			(show_name no)
 			(do_not_autoplace no)

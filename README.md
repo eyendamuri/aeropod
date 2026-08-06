@@ -49,11 +49,16 @@ aeropod is two custom PCBs plus a 3D-printed enclosure.
 
 | Peripheral | Pins |
 |------------|------|
-| ST7789 display | SCK 18, MOSI 23, CS 5, DC 17, RST 16, BL 27 |
-| microSD (shared SPI bus) | CS 15 |
-| PCM5102A I²S | BCK 26, LRCK 25, DATA 22 |
-| MPR121 click wheel (I²C) | SDA 21, SCL 4, IRQ 13 |
-| Buttons | MENU 34, PREV 35, NEXT 32, PLAY 33, CENTER 39 |
+| Shared SPI bus | SCK 18, MOSI 23, MISO 19 |
+| ST7789 display | CS 15, DC 2, RST 32, BL 33 |
+| microSD | CS 5 |
+| PCM5102A I²S | BCK 26, LRCK 25, DATA 27, XSMT 12 |
+| MPR121 click wheel (I²C) | SDA 21, SCL 22, IRQ 4 |
+| Buttons | MENU 13, PREV 14, NEXT 16, PLAY 17, CENTER 35 |
+| Battery sense | VBAT 34 (100k/100k divider) |
+
+All five button lines carry a 10 k pull-up on the main board, which is what
+makes GPIO35 usable despite having no internal pull-up of its own.
 
 <!-- PHOTO: the bare PCB(s), and/or the board with components soldered. -->
 ![PCB](docs/images/pcb.png)
@@ -125,6 +130,13 @@ aeropod/
 ---
 
 ## Fabrication and assembly
+
+> **The main board gerbers and production files are out of date.** The
+> schematic was revised after an electrical review (see
+> [`ELECTRICAL_REVIEW.md`](ELECTRICAL_REVIEW.md)) and the PCB has not been
+> re-laid-out yet, so the files under `aeropod2/gerbers/` and
+> `aeropod2/production/` still describe the earlier, broken revision. Do not
+> order the main board from them. The clickwheel board is unaffected.
 
 Everything needed to physically build an aeropod is in the repo:
 
