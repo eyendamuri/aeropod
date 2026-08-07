@@ -52,6 +52,14 @@ Fixed by moving R4 and C5 onto the EN net and replacing the slide switch with a
 momentary button from EN to ground, which is what you asked for anyway. SW2 and
 IO0 had the same mistake and got the same treatment.
 
+Both are `Switch:SW_Push`, a plain two pin momentary button, on the Omron
+B3U-1000P footprint: 3.0 x 2.5 mm body, 1.6 mm tall, two 0.9 x 1.7 mm pads on a
+3.4 mm pitch. That is the ultra-small dev board style part rather than the 6 x 6
+mm one, which matters here because the first pass had them on a B3S-1000 whose
+outline is 10 x 7.4 mm including the mounting tabs. The five user facing buttons
+on the clickwheel board are deliberately left on the larger 6 x 6 mm part, since
+those get pressed through the case.
+
 ### 2. The microSD socket was miswired
 
 Connections were shifted by one pin and the command line was grounded:

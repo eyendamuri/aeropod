@@ -20,7 +20,7 @@ Main board component,J2 FFC connector,"18 pin, 1.0 mm pitch, horizontal",1,0.30,
 Main board component,U1 TP4056-42-ESOP8,"Single-cell LiPo charge controller",1,0.22,included in PCBA,https://www.lcsc.com/search?q=TP4056
 Main board component,J1 USB-C receptacle,"USB 2.0, 14 position",1,0.22,included in PCBA,https://www.lcsc.com/search?q=USB+C+receptacle+14P
 Main board component,U7 MT3608,"Boost converter, SOT-23-6",1,0.18,included in PCBA,https://www.lcsc.com/search?q=MT3608
-Main board component,SW1 SW2 tactile switch,"Omron B3S-1000, reset and boot buttons",2,0.06,included in PCBA,https://www.lcsc.com/search?q=B3S-1000
+Main board component,SW1 SW2 tactile button,"Omron B3U-1000P, 3.0 x 2.5 x 1.6 mm ultra-small, reset and boot",2,0.13,included in PCBA,https://www.lcsc.com/search?q=B3U-1000P
 Main board component,L1 inductor,"4.7 uH, 0805",1,0.12,included in PCBA,https://www.lcsc.com/search?q=4.7uH+0805+inductor
 Main board component,U2 AMS1117-3.3,"3.3 V LDO regulator, SOT-223",1,0.09,included in PCBA,https://www.lcsc.com/search?q=AMS1117-3.3
 Main board component,BT1 JST-PH connector,"2 pin, 2.00 mm, battery",1,0.09,included in PCBA,https://www.lcsc.com/search?q=S2B-PH-SM4-TB
