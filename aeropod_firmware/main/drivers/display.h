@@ -17,7 +17,7 @@ typedef struct { int16_t x, y, w, h; } rect_t;
 
 // ─── Init / backlight ────────────────────────────────────────────────────────
 void display_init(void);
-void display_backlight(uint8_t percent);   // 0–100
+void display_backlight(uint8_t percent);   // no-op: backlight is tied to 3.3 V
 
 // ─── Low-level ───────────────────────────────────────────────────────────────
 void display_set_window(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);

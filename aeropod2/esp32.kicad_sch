@@ -2560,7 +2560,7 @@
 	)
 	(global_label "B5"
 		(shape input)
-		(at 160.02 115.57 0)
+		(at 160.02 110.49 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2569,7 +2569,7 @@
 		)
 		(uuid "21bdb2ad-cb54-47a6-a34d-bb32f8d3e98c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 160.02 115.57 0)
+			(at 160.02 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5896,28 +5896,6 @@
 			)
 		)
 	)
-	(global_label "LCD_BL"
-		(shape output)
-		(at 160.02 110.49 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "7002c260-1e85-49eb-aa0e-c5e8206ec26e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 160.02 110.49 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "VBAT_SENSE"
 		(shape input)
 		(at 160.02 113.03 0)
@@ -5999,5 +5977,9 @@
 	(no_connect
 		(at 67.31 118.11)
 		(uuid "96a832ef-065e-4fb5-bf0d-1b24e35efcec")
+	)
+	(no_connect
+		(at 160.02 115.57)
+		(uuid "ce80d7c9-f7e8-4276-ab29-3e997400723f")
 	)
 )

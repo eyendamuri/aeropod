@@ -6,8 +6,9 @@ netlists exported straight from the schematics, plus the board files.
 
 The short version: the review found four wiring faults that would have stopped
 the main board working, plus a set of smaller problems. All of them are now
-fixed in the schematic. The PCB layout has not been redone yet, so that is the
-one job still outstanding before ordering.
+fixed in the schematic, which passes ERC with zero errors and zero warnings.
+The PCB layout has not been redone yet, so that is the one job still
+outstanding before ordering.
 
 ---
 
@@ -20,8 +21,8 @@ one job still outstanding before ordering.
 | 3 | Boost inductor not connected to the input | critical | fixed |
 | 4 | 3.3 V rail had no headroom on battery | critical | fixed |
 | 5 | Firmware pin map did not match the board | major | fixed |
-| 6 | No backlight control pin on the display connector | major | fixed |
-| 7 | Center button input floated | major | fixed |
+| 6 | No backlight control pin on the display connector | minor | by design, tied to 3.3 V |
+| 7 | Center button input floated | major | fixed, moved to IO33 |
 | 8 | Charge status LEDs reverse biased | major | fixed |
 | 9 | No battery voltage divider | major | fixed |
 | 10 | DAC hardware mute never released | major | fixed |
@@ -33,6 +34,8 @@ one job still outstanding before ordering.
 | 16 | Clickwheel electrodes on auto-named nets | moderate | open |
 | 17 | Electrode lines share one ground over the cable | interference | open by choice |
 | 18 | PCB layout not updated to the new schematic | blocking | open, next job |
+| 19 | ERC could not see the rails as driven | cosmetic | fixed with PWR_FLAGs |
+| 20 | CP2102N footprint lived outside the repo | build | fixed, vendored in |
 
 ---
 
@@ -92,11 +95,15 @@ life over the linear part, but that is a bigger change than this revision.
 - The firmware pin map disagreed with the board on nearly every pin. `config.h`
   has been rewritten against the corrected schematic and checked for conflicts:
   every GPIO now appears exactly once.
-- J6 went from seven pins to eight so the backlight can be driven from IO33
-  instead of being tied permanently on.
-- All five button lines picked up 10k pull-ups (R20 to R24). This is what makes
-  the Center button on GPIO35 work at all, since GPIO34 to GPIO39 have no
-  internal pull-ups.
+- The Center button moved off GPIO35 onto GPIO33. GPIO34 to GPIO39 are input
+  only and have no internal pull-up, which was the whole reason that input
+  floated. GPIO33 is a full GPIO, so the ESP32's own pull-up holds it high and
+  the board needs no pull-up resistors on any of the five button lines. GPIO35
+  is now spare.
+- The display connector stays at seven pins. There is no backlight control
+  line, so the module's BL input is tied to 3.3 V and the backlight runs at
+  full brightness. `display_backlight()` is kept as a no-op so callers do not
+  have to change.
 - D1 and D2 were reverse biased against VBUS and could never light. Both
   flipped.
 - A 100k/100k divider (R18, R19) now feeds VBAT_SENSE into IO34, so the battery
@@ -135,6 +142,38 @@ release BOOT, then flash. That is a normal workflow and it is reliable. The
 alternative, moving to the 24-pin CP2102N and adding two transistors, is a
 bigger change for a convenience feature.
 
+### 19. The ERC power warnings, and what they actually meant
+
+The schematic used to report five `power_pin_not_driven` errors. That check
+looks for a power *output* pin on each rail, and there is not one on a rail fed
+through a diode, a ferrite bead or a net tie, so ERC assumed nothing was driving
+it. It was never a wiring fault.
+
+It is worth spelling out because one of those errors moved during this work and
+looked alarming. Before the fixes it named `J5 Pin 3 [CMD]`, because CMD was
+wrongly sitting on the GND net. After the fixes it named `J5 Pin 6 [VSS]`, which
+is the card's ground pin and is supposed to be on GND. Same check, same net, one
+representative pin: the only reason the name changed is that CMD left the ground
+net, which is exactly what the fix was meant to do.
+
+Five PWR_FLAG symbols now mark GND, VBUS, VSYS (the boost output), AVDD and
+GNDA as genuinely driven, and the schematic reports zero errors and zero
+warnings. The flags are annotation only: they carry no footprint and do not
+appear in the netlist or the BOM, so the board still has exactly 67 components.
+
+### 20. The CP2102N footprint was not in the repo
+
+Every footprint on both boards was checked against what is actually on disk.
+Sixty-six resolved against the stock KiCad libraries. The sixty-seventh, U6, was
+using `footprints:QFN20_CP2102N_SIL`, a nickname registered in the global KiCad
+config that pointed at a vendor download sitting in a Downloads folder. It
+worked on this machine and nowhere else, and it would have broken as soon as
+that folder was cleaned out.
+
+The library is now vendored into the project at `aeropod2/footprints.pretty`
+with a project level `fp-lib-table`, so a fresh clone builds without touching
+the global library table.
+
 ### 14 to 16. Still open
 
 - **Battery protection.** The cell connects straight to the system rail and the
@@ -161,9 +200,12 @@ call for this revision. To give it the best chance:
 
 - Keep the ribbon as short as the case allows and use a shielded FFC if you can
   get one.
-- The five button lines now have pull-ups at the main board end, which makes
-  them lower impedance and less likely to couple into the neighbouring
-  electrode lines.
+- The button lines are held up by the ESP32's internal pull-ups, which are weak
+  at roughly 45k. That keeps the part count down but leaves those lines fairly
+  high impedance next to the electrode lines. Firmware debounce should cover
+  ordinary bounce; if the buttons turn out to be flaky on the real cable,
+  fitting 10k pull-ups is the fix and needs no schematic change beyond adding
+  the parts.
 - Once the layout is redone, keep the boost loop (inductor, diode, output cap,
   ground) physically tight, and keep the wheel connector away from it.
 - Budget time for tuning the MPR121 thresholds in firmware against the real

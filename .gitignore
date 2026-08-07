@@ -29,3 +29,6 @@ desktop.ini
 
 # ─── Stasis submission drafts (devlog + its images), not part of the code repo ───
 stasis_submission/
+
+# KiCad session lock files
+~*.lck

@@ -385,8 +385,7 @@ esp_err_t clickwheel_init(void)
         gpio_config_t g = {
             .pin_bit_mask = 1ULL << s_btns[i].pin,
             .mode         = GPIO_MODE_INPUT,
-            .pull_up_en   = (s_btns[i].pin == BTN_CENTER_PIN)
-                             ? GPIO_PULLUP_DISABLE : GPIO_PULLUP_ENABLE,
+            .pull_up_en   = GPIO_PULLUP_ENABLE,
             .pull_down_en = GPIO_PULLDOWN_DISABLE,
             .intr_type    = GPIO_INTR_DISABLE,
         };

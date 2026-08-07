@@ -21,7 +21,8 @@
 #define LCD_CS_PIN       GPIO_NUM_15   // LCD_CS  (J6 pin 7)
 #define LCD_DC_PIN       GPIO_NUM_2    // LCD_DC  (J6 pin 6)
 #define LCD_RST_PIN      GPIO_NUM_32   // LCD_RST (J6 pin 5)
-#define LCD_BL_PIN       GPIO_NUM_33   // LCD_BL  (J6 pin 8), PWM via LEDC channel 0
+// No backlight pin on the connector. Tie the module's BL/BLK input to 3.3 V,
+// which leaves the backlight permanently on at full brightness.
 #define LCD_SPI_FREQ_HZ  (40 * 1000 * 1000)
 #define LCD_DMA_CHAN     1
 
@@ -72,13 +73,14 @@
 
 // ─── Physical Buttons (active low) ───────────────────────────────────────────
 // SW1..SW5 on the clickwheel PCB, routed through the 18-pin connector.
-// Every line has a 10k pull-up on the main board (R20..R24), so no internal
-// pull-up is needed and GPIO35 is safe despite having none available.
+// All five sit on full GPIOs, so the ESP32's internal pull-ups hold them high
+// and the board carries no pull-up resistors. GPIO34-39 are deliberately
+// avoided here: they are input only and have no internal pull-up at all.
 #define BTN_MENU_PIN     GPIO_NUM_13   // B1
 #define BTN_PREV_PIN     GPIO_NUM_14   // B2
 #define BTN_NEXT_PIN     GPIO_NUM_16   // B3
 #define BTN_PLAY_PIN     GPIO_NUM_17   // B4
-#define BTN_CENTER_PIN   GPIO_NUM_35   // B5, input only, external pull-up
+#define BTN_CENTER_PIN   GPIO_NUM_33   // B5
 #define BTN_DEBOUNCE_MS  30
 
 // ─── Battery ADC ─────────────────────────────────────────────────────────────

@@ -35,7 +35,7 @@ aeropod is two custom PCBs plus a 3D-printed enclosure.
 | Subsystem | Part | Notes |
 |-----------|------|-------|
 | MCU | **ESP32-WROOM-32** | dual-core, Wi-Fi + Classic Bluetooth |
-| Display | **ST7789** 240×320 SPI IPS LCD | PWM backlight |
+| Display | **ST7789** 240×320 SPI IPS LCD | backlight tied on |
 | Audio DAC | **PCM5102A** | 32-bit I²S stereo DAC |
 | Touch input | **MPR121** | 12-zone capacitive click wheel |
 | Buttons | 5× tactile | Menu / Prev / Next / Play / Center |
@@ -50,15 +50,18 @@ aeropod is two custom PCBs plus a 3D-printed enclosure.
 | Peripheral | Pins |
 |------------|------|
 | Shared SPI bus | SCK 18, MOSI 23, MISO 19 |
-| ST7789 display | CS 15, DC 2, RST 32, BL 33 |
+| ST7789 display | CS 15, DC 2, RST 32 |
 | microSD | CS 5 |
 | PCM5102A I²S | BCK 26, LRCK 25, DATA 27, XSMT 12 |
 | MPR121 click wheel (I²C) | SDA 21, SCL 22, IRQ 4 |
-| Buttons | MENU 13, PREV 14, NEXT 16, PLAY 17, CENTER 35 |
+| Buttons | MENU 13, PREV 14, NEXT 16, PLAY 17, CENTER 33 |
 | Battery sense | VBAT 34 (100k/100k divider) |
 
-All five button lines carry a 10 k pull-up on the main board, which is what
-makes GPIO35 usable despite having no internal pull-up of its own.
+All five buttons sit on full GPIOs and use the ESP32's internal pull-ups, so
+the board carries no pull-up resistors. GPIO34 to GPIO39 are avoided for
+buttons because they are input only and have no internal pull-up. The display
+module's backlight input is tied to 3.3 V rather than being driven, so there is
+no brightness control in software.
 
 <!-- PHOTO: the bare PCB(s), and/or the board with components soldered. -->
 ![PCB](docs/images/pcb.png)

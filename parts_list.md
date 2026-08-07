@@ -23,7 +23,7 @@ Main board (aeropod2), 4-layer, about 41 x 90 mm. Key assembled components:
 | USB-C receptacle | charging and flashing |
 | 2x tactile switches | reset and boot buttons |
 | microSD socket | card holder (card listed below) |
-| Passives | resistors (incl. button pull-ups and battery divider), capacitors, inductors |
+| Passives | resistors (incl. battery divider), capacitors, inductors |
 
 Clickwheel board (capacitive wheel plus buttons). Key assembled components:
 
