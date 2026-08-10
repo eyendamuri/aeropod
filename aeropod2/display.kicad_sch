@@ -593,7 +593,7 @@
 		)
 		(uuid "f9e4eae9-95f3-4e42-9b35-101807b1ba31")
 	)
-	(global_label "LCD_CS"
+	(global_label "CS_DISP"
 		(shape input)
 		(at 158.75 73.66 270)
 		(effects
@@ -615,7 +615,7 @@
 			)
 		)
 	)
-	(global_label "LCD_RST"
+	(global_label "RST_DISP"
 		(shape input)
 		(at 153.67 73.66 270)
 		(effects
@@ -637,7 +637,7 @@
 			)
 		)
 	)
-	(global_label "SPI_MOSI"
+	(global_label "MOSI/SDA"
 		(shape input)
 		(at 151.13 74.93 270)
 		(effects
@@ -659,7 +659,7 @@
 			)
 		)
 	)
-	(global_label "SPI_SCK"
+	(global_label "SCK/CLK"
 		(shape input)
 		(at 148.59 74.93 270)
 		(effects
@@ -681,7 +681,7 @@
 			)
 		)
 	)
-	(global_label "LCD_DC"
+	(global_label "DC"
 		(shape input)
 		(at 156.21 73.66 270)
 		(effects

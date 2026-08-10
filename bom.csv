@@ -20,7 +20,7 @@ Main board component,J2 FFC connector,"18 pin, 1.0 mm pitch, horizontal",1,0.30,
 Main board component,U1 TP4056-42-ESOP8,"Single-cell LiPo charge controller",1,0.22,included in PCBA,https://www.lcsc.com/search?q=TP4056
 Main board component,J1 USB-C receptacle,"USB 2.0, 14 position",1,0.22,included in PCBA,https://www.lcsc.com/search?q=USB+C+receptacle+14P
 Main board component,U7 MT3608,"Boost converter, SOT-23-6",1,0.18,included in PCBA,https://www.lcsc.com/search?q=MT3608
-Main board component,SW1 SW2 tactile button,"Omron B3U-1000P, 3.0 x 2.5 x 1.6 mm ultra-small, reset and boot",2,0.13,included in PCBA,https://www.lcsc.com/search?q=B3U-1000P
+Main board component,SW1 SW2 SPDT switch,"E-Switch EG1271, reset and boot",2,0.18,included in PCBA,https://www.lcsc.com/search?q=EG1271
 Main board component,L1 inductor,"4.7 uH, 0805",1,0.12,included in PCBA,https://www.lcsc.com/search?q=4.7uH+0805+inductor
 Main board component,U2 AMS1117-3.3,"3.3 V LDO regulator, SOT-223",1,0.09,included in PCBA,https://www.lcsc.com/search?q=AMS1117-3.3
 Main board component,BT1 JST-PH connector,"2 pin, 2.00 mm, battery",1,0.09,included in PCBA,https://www.lcsc.com/search?q=S2B-PH-SM4-TB
@@ -28,7 +28,7 @@ Main board component,J6 pin header,"7 pin, 2.54 mm, display",1,0.08,included in 
 Main board component,D3 D4 D5 Schottky diodes,"SOD-123, power path OR-ing",3,0.05,included in PCBA,https://www.lcsc.com/search?q=SOD-123+schottky
 Main board component,D1 D2 LEDs,"0603, charge and standby status",2,0.04,included in PCBA,https://www.lcsc.com/search?q=0603+LED
 Main board component,FB1 ferrite bead,"600 ohm at 100 MHz, 0603",1,0.03,included in PCBA,https://www.lcsc.com/search?q=600+ohm+ferrite+bead+0603
-Main board component,Capacitors,"0402 / 0603 / 0805, 100nF to 22uF",25,0.02,included in PCBA,https://www.lcsc.com/search?q=mlcc+capacitor
-Main board component,Resistors,"0201 / 0402, 33 ohm to 750k, incl. the battery divider",18,0.01,included in PCBA,https://www.lcsc.com/search?q=chip+resistor
+Main board component,Capacitors,"0402 / 0603 / 0805, 100nF to 22uF",27,0.02,included in PCBA,https://www.lcsc.com/search?q=mlcc+capacitor
+Main board component,Resistors,"0201 / 0402, 470 ohm to 750k",16,0.01,included in PCBA,https://www.lcsc.com/search?q=chip+resistor
 Clickwheel component,J1 FFC connector,"18 pin, 1.0 mm pitch, horizontal",1,0.30,included in PCBA,https://www.lcsc.com/search?q=1-84953-8
 Clickwheel component,SW1 to SW5 tactile switches,"Omron B3S-1000, Menu / Prev / Next / Play / Center",5,0.06,included in PCBA,https://www.lcsc.com/search?q=B3S-1000

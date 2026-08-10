@@ -1,7 +1,6 @@
 #include "i2s_output.h"
 #include "config.h"
 #include "driver/i2s.h"
-#include "driver/gpio.h"
 #include "esp_log.h"
 #include <string.h>
 #include <stdlib.h>
@@ -37,19 +36,6 @@ esp_err_t i2s_output_init(uint32_t sample_rate)
         .mck_io_num   = I2S_PIN_NO_CHANGE,  // PCM5102A derives MCLK via PLL
     };
     ESP_ERROR_CHECK(i2s_set_pin(I2S_NUM, &pins));
-
-    // Release the DAC's hardware mute. Safe to do here: the strapping pin has
-    // already been sampled by the time app_main gets this far.
-    gpio_config_t xsmt = {
-        .pin_bit_mask = 1ULL << DAC_XSMT_PIN,
-        .mode         = GPIO_MODE_OUTPUT,
-        .pull_up_en   = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type    = GPIO_INTR_DISABLE,
-    };
-    ESP_ERROR_CHECK(gpio_config(&xsmt));
-    ESP_ERROR_CHECK(gpio_set_level(DAC_XSMT_PIN, 1));
-
     ESP_LOGI(TAG, "I2S init @ %u Hz", (unsigned)sample_rate);
     return ESP_OK;
 }

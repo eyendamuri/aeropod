@@ -2,6 +2,7 @@
 #include "config.h"
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
+#include "driver/ledc.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -190,18 +191,37 @@ void display_init(void)
     };
     ESP_ERROR_CHECK(spi_bus_add_device(LCD_SPI_HOST, &devcfg, &s_spi));
 
+    // LEDC backlight PWM
+    ledc_timer_config_t ltim = {
+        .speed_mode       = LEDC_LOW_SPEED_MODE,
+        .duty_resolution  = LEDC_TIMER_8_BIT,
+        .timer_num        = LEDC_TIMER_0,
+        .freq_hz          = 5000,
+        .clk_cfg          = LEDC_AUTO_CLK,
+    };
+    ledc_timer_config(&ltim);
+    ledc_channel_config_t lch = {
+        .gpio_num   = LCD_BL_PIN,
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .channel    = LEDC_CHANNEL_0,
+        .timer_sel  = LEDC_TIMER_0,
+        .duty       = 0,
+        .hpoint     = 0,
+    };
+    ledc_channel_config(&lch);
+
     st7789_hw_reset();
     st7789_init_regs();
+    display_backlight(80);
 
     ESP_LOGI(TAG, "ST7789 %dx%d ready", LCD_WIDTH, LCD_HEIGHT);
 }
 
-// The display connector carries no backlight line: the module's BL input is
-// tied to 3.3 V, so brightness is fixed in hardware. Kept as a no-op so
-// callers do not have to care.
 void display_backlight(uint8_t percent)
 {
-    (void)percent;
+    uint32_t duty = (percent * 255) / 100;
+    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, duty);
+    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
 }
 
 // ─── Window / pixel writes ────────────────────────────────────────────────────

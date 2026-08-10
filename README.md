@@ -35,7 +35,7 @@ aeropod is two custom PCBs plus a 3D-printed enclosure.
 | Subsystem | Part | Notes |
 |-----------|------|-------|
 | MCU | **ESP32-WROOM-32** | dual-core, Wi-Fi + Classic Bluetooth |
-| Display | **ST7789** 240×320 SPI IPS LCD | backlight tied on |
+| Display | **ST7789** 240×320 SPI IPS LCD | PWM backlight |
 | Audio DAC | **PCM5102A** | 32-bit I²S stereo DAC |
 | Touch input | **MPR121** | 12-zone capacitive click wheel |
 | Buttons | 5× tactile | Menu / Prev / Next / Play / Center |
@@ -49,19 +49,11 @@ aeropod is two custom PCBs plus a 3D-printed enclosure.
 
 | Peripheral | Pins |
 |------------|------|
-| Shared SPI bus | SCK 18, MOSI 23, MISO 19 |
-| ST7789 display | CS 15, DC 2, RST 32 |
-| microSD | CS 5 |
-| PCM5102A I²S | BCK 26, LRCK 25, DATA 27, XSMT 12 |
-| MPR121 click wheel (I²C) | SDA 21, SCL 22, IRQ 4 |
-| Buttons | MENU 13, PREV 14, NEXT 16, PLAY 17, CENTER 33 |
-| Battery sense | VBAT 34 (100k/100k divider) |
-
-All five buttons sit on full GPIOs and use the ESP32's internal pull-ups, so
-the board carries no pull-up resistors. GPIO34 to GPIO39 are avoided for
-buttons because they are input only and have no internal pull-up. The display
-module's backlight input is tied to 3.3 V rather than being driven, so there is
-no brightness control in software.
+| ST7789 display | SCK 18, MOSI 23, CS 5, DC 17, RST 16, BL 27 |
+| microSD (shared SPI bus) | CS 15 |
+| PCM5102A I²S | BCK 26, LRCK 25, DATA 22 |
+| MPR121 click wheel (I²C) | SDA 21, SCL 4, IRQ 13 |
+| Buttons | MENU 34, PREV 35, NEXT 32, PLAY 33, CENTER 39 |
 
 <!-- PHOTO: the bare PCB(s), and/or the board with components soldered. -->
 ![PCB](docs/images/pcb.png)
@@ -133,13 +125,6 @@ aeropod/
 ---
 
 ## Fabrication and assembly
-
-> **The main board gerbers and production files are out of date.** The
-> schematic was revised after an electrical review (see
-> [`ELECTRICAL_REVIEW.md`](ELECTRICAL_REVIEW.md)) and the PCB has not been
-> re-laid-out yet, so the files under `aeropod2/gerbers/` and
-> `aeropod2/production/` still describe the earlier, broken revision. Do not
-> order the main board from them. The clickwheel board is unaffected.
 
 Everything needed to physically build an aeropod is in the repo:
 

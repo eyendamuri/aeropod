@@ -21,9 +21,8 @@ Main board (aeropod2), 4-layer, about 41 x 90 mm. Key assembled components:
 | AMS1117-3.3 | 3.3 V LDO regulator |
 | MT3608 | boost converter |
 | USB-C receptacle | charging and flashing |
-| 2x tactile buttons | reset and boot (Omron B3U-1000P, 3.0 x 2.5 x 1.6 mm) |
 | microSD socket | card holder (card listed below) |
-| Passives | resistors (incl. battery divider), capacitors, inductors |
+| Passives | resistors, capacitors, inductors |
 
 Clickwheel board (capacitive wheel plus buttons). Key assembled components:
 
