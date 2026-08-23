@@ -526,146 +526,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:R"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "R"
-				(at 2.032 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R"
-				(at 0 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at -1.778 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Resistor"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "R res resistor"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "R_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "R_0_1"
-				(rectangle
-					(start -1.016 -2.54)
-					(end 1.016 2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:+3.3V"
 			(power global)
 			(pin_numbers
@@ -928,20 +788,28 @@
 		(uuid "1d8716cf-e332-4876-a718-f88eb2d1616a")
 	)
 	(junction
-		(at 106.68 111.76)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "678380dd-7bcf-40cf-806c-4739e3a0a6bd")
-	)
-	(junction
 		(at 91.44 109.22)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7ffdd3c4-b4fc-4b8e-84e3-8b65e697194b")
 	)
 	(no_connect
+		(at 114.3 93.98)
+		(uuid "89a95e81-567e-400d-8f2f-fb5f05921776")
+	)
+	(no_connect
 		(at 114.3 111.76)
 		(uuid "dcc26451-343e-426d-ba65-123aff3a3b3a")
+	)
+	(wire
+		(pts
+			(xy 104.14 111.76) (xy 110.49 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11408629-8b7d-4133-a232-2016b3abda76")
 	)
 	(wire
 		(pts
@@ -955,13 +823,13 @@
 	)
 	(wire
 		(pts
-			(xy 101.6 111.76) (xy 106.68 111.76)
+			(xy 110.49 111.76) (xy 110.49 109.22)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "237065a4-f46f-4ce0-9ab5-a816b21d7694")
+		(uuid "4025c598-e263-4bc7-bdfe-474c866dfc0e")
 	)
 	(wire
 		(pts
@@ -972,6 +840,16 @@
 			(type default)
 		)
 		(uuid "4e19f444-fd1b-4cc7-9616-98511795f4e8")
+	)
+	(wire
+		(pts
+			(xy 110.49 109.22) (xy 114.3 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e419923-4e22-4f55-ae01-cca283a706bd")
 	)
 	(wire
 		(pts
@@ -1005,36 +883,6 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 109.22) (xy 114.3 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "948fb3f3-674c-47fe-9ca1-2c1566406f84")
-	)
-	(wire
-		(pts
-			(xy 110.49 111.76) (xy 110.49 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9882ccce-daae-4d07-8841-ef1813bfe747")
-	)
-	(wire
-		(pts
-			(xy 106.68 111.76) (xy 110.49 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a34c1885-ee63-4819-bfca-b06dd772c782")
-	)
-	(wire
-		(pts
 			(xy 91.44 101.6) (xy 114.3 101.6)
 		)
 		(stroke
@@ -1045,7 +893,7 @@
 	)
 	(global_label "CS"
 		(shape bidirectional)
-		(at 114.3 93.98 180)
+		(at 104.14 111.76 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1054,7 +902,7 @@
 		)
 		(uuid "3b4e8cdd-3ee7-42c5-ab40-6855929cbecf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 114.3 93.98 0)
+			(at 104.14 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1111,7 +959,7 @@
 	)
 	(global_label "MOSI/SDA"
 		(shape bidirectional)
-		(at 101.6 111.76 180)
+		(at 105.41 99.06 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1120,7 +968,7 @@
 		)
 		(uuid "f8c09c61-d801-4bbd-b28e-a4f3a31150f5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 101.6 111.76 0)
+			(at 105.41 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1205,85 +1053,6 @@
 			(project "aeropod2"
 				(path "/24b34e19-463e-4d66-8262-936edb1e279f/ae5c28f8-1c97-4efc-bfa9-c7a2dc151128"
 					(reference "#PWR053")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 105.41 99.06 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "58b54df2-4f8b-4543-b54e-17396997be73")
-		(property "Reference" "#PWR049"
-			(at 99.06 99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 101.6 99.0599 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 105.41 99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 105.41 99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 105.41 99.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "1310db52-7c07-4af9-8c79-d3e510601f1f")
-		)
-		(instances
-			(project "aeropod2"
-				(path "/24b34e19-463e-4d66-8262-936edb1e279f/ae5c28f8-1c97-4efc-bfa9-c7a2dc151128"
-					(reference "#PWR049")
 					(unit 1)
 				)
 			)
@@ -1543,166 +1312,6 @@
 			(project "aeropod2"
 				(path "/24b34e19-463e-4d66-8262-936edb1e279f/ae5c28f8-1c97-4efc-bfa9-c7a2dc151128"
 					(reference "#PWR051")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 106.68 119.38 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d5b315ce-a894-4d19-ae1c-227573fdb6c9")
-		(property "Reference" "#PWR052"
-			(at 106.68 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 106.68 124.46 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 106.68 119.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 106.68 119.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 106.68 119.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "96f43824-d7e7-452e-9f23-913104de5719")
-		)
-		(instances
-			(project "aeropod2"
-				(path "/24b34e19-463e-4d66-8262-936edb1e279f/ae5c28f8-1c97-4efc-bfa9-c7a2dc151128"
-					(reference "#PWR052")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 106.68 115.57 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "dad39af3-c3f4-4a58-86cc-d4416ab5fe41")
-		(property "Reference" "R11"
-			(at 109.22 114.2999 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 109.22 116.8399 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
-			(at 104.902 115.57 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 106.68 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 106.68 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f12475f1-41ba-4ccc-a6dd-cca21147e54f")
-		)
-		(pin "2"
-			(uuid "3e032acc-9c56-43a9-b476-a2ce4ef81bd7")
-		)
-		(instances
-			(project "aeropod2"
-				(path "/24b34e19-463e-4d66-8262-936edb1e279f/ae5c28f8-1c97-4efc-bfa9-c7a2dc151128"
-					(reference "R11")
 					(unit 1)
 				)
 			)

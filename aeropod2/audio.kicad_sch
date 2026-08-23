@@ -1831,16 +1831,6 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "In KiCad layout terms, what this actually means:\nOn the PCB you draw a physical split in the ground plane under the PCM5102A, with the AGND copper pour on one side and the main DGND pour on the other. They connect at exactly one point - the star point, usually near the PCM5102A's GND pin. This stops ground return currents from the ESP32's SPI/I2S switching from flowing through the analog ground under the DAC's output pins, which is where they'd induce noise.\nThe AVDD decoupling caps (10 µF + 100 nF) should be placed on the AGND side of the split, as close to the AVDD pin as possible. If they're on the wrong side of the ferrite bead they're decoupling the wrong node.\nOne more thing the document glossed over - the charge pump caps (CAPP, CAMP, VNEG) also need to be on the AGND island, not the main ground plane. The charge pump generates a small negative voltage that lets the output swing below ground for a clean zero crossing, and that whole subcircuit needs to stay within the analog domain.\nFor a project like this the audible difference between doing this properly and just tying everything to a common ground is real - you'll hear it as a faint high-pitched whine or hash in quiet passages if the grounds aren't separated."
-		(exclude_from_sim no)
-		(at 150.622 154.432 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "2f823f3e-f5b0-4f8f-9e53-9a5a64bebb76")
-	)
 	(text "single star point to regular ground for agnd (pcb design step) look at claude chat"
 		(exclude_from_sim no)
 		(at 144.78 140.462 0)

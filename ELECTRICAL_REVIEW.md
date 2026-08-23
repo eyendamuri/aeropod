@@ -147,36 +147,80 @@ to 3.3 V and leave the routing alone.
 
 ### B. Choose one for the power rail
 
-**B1, recommended: fix the boost.** Three net changes in one cluster around U7,
-L1, D3, C9, C11 and R16:
+Worth knowing before you spend effort here: **fixing the boost is the worst of
+these options for battery life.** The MT3608 lifts the cell to about 5 V at
+roughly 88 percent efficiency, and then the AMS1117 burns the gap between 4.8 V
+and 3.3 V as heat, losing another 31 percent. Only about 60 percent of the
+energy in the cell reaches the load.
 
-- L1 pin 1 leaves the cap node and goes to VREGIN
-- D3 anode leaves the cap node and joins the SW node with L1 pin 2 and U7 pin 1
-- C9, C11 and R16 move to the D3 cathode
+Deleting the boost and fitting a real low-dropout regulator gives up the bottom
+of the discharge curve but wastes far less on the way, and comes out ahead.
+Rough numbers for a 1000 mAh cell (3.7 Wh nominal) at about 250 mA:
 
-Then change R17 from 130k to 100k, which puts the boost near 5.1 V and leaves
-about 4.8 V at the regulator. That is a comfortable margin and the board runs
-properly down the whole discharge curve.
+| Option | Layout work | Cell used | Efficiency | Energy to load |
+|--------|-------------|-----------|------------|----------------|
+| Fix the boost, keep AMS1117 | 3 reroutes | ~100% | ~60% | ~2.2 Wh |
+| B1 AP2114H, boost deleted | none | ~78% | ~93% | ~2.7 Wh |
+| B2 AP2114H, battery direct | none, one link | ~94% | ~88% | ~3.0 Wh |
+| B3 buck-boost module wired in | none | ~100% | ~90% | ~3.3 Wh |
+| B4 buck-boost IC on the board | redraw power block | ~100% | ~92% | ~3.4 Wh |
 
-**B2, zero layout work: leave the boost unpopulated.** Mark U7, L1, D3, C9, C11,
-R16 and R17 do-not-populate and swap U2 for a genuine low-dropout regulator in
-the same SOT-223 footprint and pinout, such as the AP2114H-3.3. The rail then
-comes from the cell through D4.
+**B1, recommended default: swap the regulator, delete the boost.** No layout
+change at all, and it beats the repaired boost on runtime.
 
-Be clear about the cost: with the Schottky drop, this only holds 3.3 V while the
-cell is above roughly 3.9 V, so you get the top part of the battery and an early
-brown-out. USB operation is unaffected. Do not be tempted to short D4 to recover
-the margin, because D4 is what stops USB back-feeding the cell around the
-charger.
+- Change U2 from AMS1117-3.3 to **AP2114H-3.3**. Same SOT-223 outline, same
+  GND / VOUT / VIN pin order, 450 mV dropout at 1 A against the AMS1117's 1.3 V.
+- Mark U7, L1, D3, C9, C11, R16 and R17 do-not-populate.
+
+  **Check the suffix.** The AP2114**H** is GND / VOUT / VIN and drops straight
+  into the AMS1117 pads. The AP2114**HA** is VIN / GND / VOUT, a different part
+  in the same package, and fitting one will destroy the board. Both are stocked
+  and the part numbers differ by one letter.
+
+The rail holds 3.3 V while the cell is above about 3.7 V, then sags gently with
+the cell. Everything on the board tolerates that: the ESP32 module is specified
+to 3.0 V and the microSD to 2.7 V. The PCM5102A is the tightest at about 3.1 V,
+which corresponds to a cell around 3.5 V, so that is where you stop.
+
+**B2, if you want most of the cell: feed the regulator straight from the
+battery.** Do B1, and also mark D5 do-not-populate and bridge D4 with a 0 ohm
+link. Removing the Schottky drop lets the regulator hold 3.3 V down to a cell of
+about 3.4 V and stay usable to about 3.2 V, which is most of the pack.
+
+Two consequences to accept before choosing this:
+
+- The board will no longer run from USB with no battery fitted, because USB then
+  only reaches the charger. Awkward for bench work and flashing.
+- The TP4056 sees the system load as well as the charge current, so charge
+  termination and the status LED become unreliable. Common on hobby boards and
+  tolerable, but it is a real compromise.
+
+Do not bridge D4 while leaving D5 fitted. D4 is what stops USB pushing current
+backwards into the cell around the charger.
+
+**B3, best runtime without touching the layout: wire in a buck-boost module.**
+Mark U2, U7, L1 and D3 do-not-populate and run three wires from a small
+buck-boost board, VREGIN in, GND, 3.3 V out, onto the existing pads. Something
+like a TPS63020 breakout is roughly 10 by 15 mm and will hold 3.3 V from 4.2 V
+all the way down to 3.0 V at around 90 percent. You get the whole cell and good
+efficiency for no PCB work, at the cost of a module to find room for in the
+case.
+
+**B4, the proper fix for a future revision: a buck-boost IC on the board.** One
+part replaces U2, U7, L1 and D3: a TPS63020 or similar takes the cell directly
+and produces 3.3 V across the entire discharge range at over 90 percent. This is
+what the power section should be if you respin. It needs a new footprint and a
+redraw of the power block, so it is not a drop-in.
 
 ### C. Free, no layout change
 
 **C1. Rotate D1 and D2 by 180 degrees.** Both are symmetric two-pad parts, so
 this swaps the pads without touching a trace, and the status LEDs start working.
 
-**C2. Change three resistor values.** R1 from 1.2k to 3k for about 400 mA of
-charge current. R9 and R10 from 470 ohm to 33 ohm so headphones are actually
-audible. R17 to 100k if you took option B1.
+**C2. Change resistor values.** R1 from 1.2k to 3k for about 400 mA of charge
+current. R9 and R10 from 470 ohm to 33 ohm so headphones are actually audible.
+R17 only matters if you repair the boost, which none of the recommended options
+do.
 
 **C3. Do not populate C29 and C30.** The auto-reset they were meant to provide
 cannot work on this package. Worse, once EN has a proper pull-up, C29 couples
@@ -222,10 +266,11 @@ the PCM5102A pulls it down.
 
 ## What this leaves
 
-Taking A1 to A3, B1 and all of C: five short reroutes in three small areas of
-the board, two parts rotated, three resistor values changed, and a firmware pin
-map rewrite. No new components, no connector changes, and the display section
-untouched.
+Taking A1 to A3, B1 and all of C: three short reroutes in two small areas of the
+board, two parts rotated, three resistor values changed, one regulator swapped
+for a different part in the same footprint, seven parts marked do-not-populate,
+and a firmware pin map rewrite. No new components, no connector changes, no
+boost rework, and the display section untouched.
 
 Interference is unchanged by any of this. The twelve capacitive electrode lines
 and five button lines still share an eighteen-pin ribbon with one ground pin,
