@@ -2141,7 +2141,7 @@
 		(uuid "6e7208dc-9bd4-4ba9-9f68-9c3d97d18d3f")
 	)
 	(no_connect
-		(at 160.02 115.57)
+		(at 160.02 110.49)
 		(uuid "7524476f-3fcc-4cfd-acb9-4d0767d498e5")
 	)
 	(no_connect
@@ -2494,7 +2494,7 @@
 	)
 	(global_label "B5"
 		(shape input)
-		(at 160.02 110.49 0)
+		(at 160.02 115.57 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2503,7 +2503,7 @@
 		)
 		(uuid "21bdb2ad-cb54-47a6-a34d-bb32f8d3e98c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 160.02 110.49 0)
+			(at 160.02 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4732,7 +4732,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPST_B3U-1000P"
+		(property "Footprint" "Button_Switch_THT:SW_E-Switch_EG1271_SPDT"
 			(at 193.04 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -5945,7 +5945,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPST_B3U-1000P"
+		(property "Footprint" "Button_Switch_THT:SW_E-Switch_EG1271_SPDT"
 			(at 82.55 57.15 0)
 			(hide yes)
 			(show_name no)
